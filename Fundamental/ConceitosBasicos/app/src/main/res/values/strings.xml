@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ConceitosBasicos</string>
+    <string name="action_settings">Settings</string>
+    <string name="campoEmail">E-mail:</string>
+    <string name="campoSenha">Senha:</string>
+    <string name="campoBotao">Autenticar</string>
+</resources>

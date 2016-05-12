@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.dvidal.animacoes.MainActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Animação!" />
+
+    <ImageView
+        android:id="@+id/imgAnimacaoId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/anima_replay"
+        android:layout_marginBottom="@dimen/standard_margin_bottom"/>
+
+    <ImageView
+        android:id="@+id/imgReplayId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_replay_black_48dp"
+        android:layout_marginBottom="@dimen/standard_margin_bottom"/>
+
+    <ImageView
+        android:id="@+id/imgReplayXMLId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_replay_black_48dp"
+        android:layout_marginBottom="@dimen/standard_margin_bottom"/>
+
+    <ImageView
+        android:id="@+id/imgRotationId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_replay_black_48dp"
+        android:layout_marginBottom="@dimen/standard_margin_bottom"/>
+
+    <ImageView
+        android:id="@+id/imgRotationXMLId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_replay_black_48dp"
+        android:layout_marginBottom="@dimen/standard_margin_bottom"/>
+
+    <ImageView
+        android:id="@+id/imgScaleId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_replay_black_48dp"/>
+
+    <ImageView
+        android:id="@+id/imgScaleXMLId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_replay_black_48dp"/>
+
+</LinearLayout>

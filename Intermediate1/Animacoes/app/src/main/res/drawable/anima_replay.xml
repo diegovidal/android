@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/ic_replay_black_48dp" android:duration="1000"/>
+    <item android:drawable="@drawable/ic_replay_5_black_48dp" android:duration="1000"/>
+    <item android:drawable="@drawable/ic_replay_10_black_48dp" android:duration="1000"/>
+    <item android:drawable="@drawable/ic_replay_30_black_48dp" android:duration="1000"/>
+</animation-list>

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LayoutAvancado</string>
+    <string name="label_estado">Estado</string>
+
+    <string name="label_alert">Atenção!</string>
+    <string name="label_alert_OK">OK</string>
+
+
+</resources>

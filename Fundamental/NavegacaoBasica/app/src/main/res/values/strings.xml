@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">NavegacaoBasica</string>
+
+    <string name="txtName">Digite seu Nome:</string>
+    <string name="btnSubmit">Carregar</string>
+
+    <string name="mainScreen">Autenticar</string>
+
+</resources>

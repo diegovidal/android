@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PedraPapelTesoura</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="lbl_pedra">Pedra</string>
+    <string name="lbl_papel">Papel</string>
+    <string name="lbl_tesoura">Tesoura</string>
+    <string name="lbl_tabs">Tabs</string>
+
+</resources>

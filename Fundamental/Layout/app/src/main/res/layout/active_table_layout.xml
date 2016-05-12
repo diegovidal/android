@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:shrinkColumns="2">
+
+    <TableRow>
+
+        <TextView  android:text="Texto 1"/>
+        <TextView  android:text="Texto 2"/>
+        <TextView  android:text="Texto 3"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView  android:text="Outro 1"/>
+        <TextView  android:text="Outro 2"/>
+        <TextView  android:text="Maria Joaquina de Amaral Pereira Gois"/>
+        <TextView  android:text="Outro 4"/>
+
+    </TableRow>
+
+    <TableRow>
+
+        <TextView  android:text="Massa 1"/>
+        <TextView  android:text="Massa 2"/>
+        <TextView  android:text="Massa 3"/>
+
+    </TableRow>
+
+</TableLayout>

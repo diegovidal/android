@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Temas</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="action_lighbulb">Lightbulb</string>
+    <string name="action_theaters">Theaters</string>
+    <string name="action_search">Search</string>
+
+</resources>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Acelerometro</string>
+
+    <string name="lbl_x">X: %1$f</string>
+    <string name="lbl_y">Y: %1$f</string>
+    <string name="lbl_z">Z: %1$f</string>
+
+    <string name="mudanca">Mudança de precisão para %1$d</string>
+
+</resources>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Layout</string>
+
+    <string name="form_label_name">Nome:</string>
+    <string name="form_label_lastname">Sobrenome:</string>
+    <string name="form_label_age">Idade:</string>
+    <string name="form_label_height">Altura:</string>
+    <string name="form_label_reason">Qual a razão?</string>
+
+    <string name="form_button_submit">Cadastrar</string>
+    <string name="form_button_send">Enviar</string>
+
+    <string name="form_switch">Eu não sou um robô</string>
+
+
+</resources>
