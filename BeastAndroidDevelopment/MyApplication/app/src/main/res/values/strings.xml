@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BeastMainProject</string>
+    <string name="txt_why_joined_header">Why Joined?</string>
+
+    <string name="txt_major_intro">Major: %1$s</string>
+    <string name="txt_fact_intro">Fun Fact: %1$s</string>
+    <string name="txt_crossed_intro">Joined:: %1$s</string>
+
+    <string name="txt_intro_header">Introduction</string>
+    <string name="txt_intro_body">This app was made by Diego Vidal and he is super awesome!
+        Thaks to him I can make it now as well!</string>
+
+</resources>

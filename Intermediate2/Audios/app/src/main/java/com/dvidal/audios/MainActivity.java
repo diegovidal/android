@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()){
 
             case R.id.btnPlay:
-                playMusicSD();
+                playMusic();
                 break;
 
             case R.id.btnStop:
