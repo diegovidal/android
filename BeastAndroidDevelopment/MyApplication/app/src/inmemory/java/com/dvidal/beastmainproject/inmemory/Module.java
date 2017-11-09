@@ -12,5 +12,7 @@ public class Module {
 
         new InMemoryBrotherService(application);
         new InMemoryCardsService(application);
+        new InMemoryPictureService(application);
+        new InMemoryRushEventsService(application);
     }
 }

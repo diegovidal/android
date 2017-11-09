@@ -27,7 +27,6 @@ public class Brother implements Parcelable {
         this.brotherFunFact = brotherFunFact;
     }
 
-
     protected Brother(Parcel in) {
 
         brotherId = in.readInt();

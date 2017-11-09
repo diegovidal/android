@@ -7,7 +7,7 @@
     android:gravity="center">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_meet_a_bro_recycleView"
+        android:id="@+id/fragment_meet_a_bro_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

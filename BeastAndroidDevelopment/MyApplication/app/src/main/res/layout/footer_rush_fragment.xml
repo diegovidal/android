@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp">
+
+    <View
+        android:id="@+id/footer_rush_fragment_viewLine1"
+        android:layout_width="180dp"
+        android:layout_height="2dp"
+        android:background="@android:color/black"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/footer_rush_fragment_txtFollowUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/footer_rush_fragment_viewLine1"
+        android:layout_centerHorizontal="true"
+        android:text="@string/txt_follow_us"
+        android:textColor="@android:color/black"/>
+
+    <View
+        android:id="@+id/footer_rush_fragment_viewLine2"
+        android:layout_width="180dp"
+        android:layout_height="2dp"
+        android:background="@android:color/black"
+        android:layout_below="@id/footer_rush_fragment_txtFollowUs"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/footer_rush_fragment_viewLine2">
+
+        <ImageView
+            android:id="@+id/footer_rush_fragment_imgFacebook"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.25"/>
+
+        <ImageView
+            android:id="@+id/footer_rush_fragment_imgTwitter"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.25"/>
+
+        <ImageView
+            android:id="@+id/footer_rush_fragment_imgsSnapChat"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.25"/>
+
+        <ImageView
+            android:id="@+id/footer_rush_fragment_imgInstagram"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.25"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

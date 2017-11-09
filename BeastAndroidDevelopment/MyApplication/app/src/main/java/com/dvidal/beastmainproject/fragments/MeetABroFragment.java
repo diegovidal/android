@@ -2,12 +2,8 @@ package com.dvidal.beastmainproject.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +11,8 @@ import android.view.ViewGroup;
 import com.dvidal.beastmainproject.R;
 import com.dvidal.beastmainproject.activities.BaseActivity;
 import com.dvidal.beastmainproject.activities.BrotherPagerActivity;
-import com.dvidal.beastmainproject.activities.PracticeActivity;
 import com.dvidal.beastmainproject.enties.Brother;
+import com.dvidal.beastmainproject.infrastructure.BeastApplication;
 import com.dvidal.beastmainproject.services.BrotherServices;
 import com.dvidal.beastmainproject.views.MeetABroViews.MeetABroAdapter;
 import com.squareup.otto.Subscribe;
@@ -48,10 +44,10 @@ public class MeetABroFragment extends BaseFragment implements MeetABroAdapter.Br
         mMeetABroAdapter = new MeetABroAdapter(this, (BaseActivity) getActivity());
 
         brothers = mMeetABroAdapter.getBrothers();
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.fragment_meet_a_bro_recycleView);
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.fragment_meet_a_bro_recyclerView);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
         setUpAdapter();
-        bus.post(new BrotherServices.SearchBrotherRequest("Hello"));
+        bus.post(new BrotherServices.SearchBrotherRequest(BeastApplication.FIREBASE_BROTHER_REFERENCE));
 
         return rootView;
     }
@@ -73,7 +69,15 @@ public class MeetABroFragment extends BaseFragment implements MeetABroAdapter.Br
     @Subscribe
     public void getBrothers(BrotherServices.SearchBrotherResponse response){
 
-        brothers.clear();
-        brothers.addAll(response.brothers);
+        int oldSize = brothers.size();
+
+        if (oldSize == 0){
+
+            brothers.clear();
+            mMeetABroAdapter.notifyItemRangeRemoved(0, oldSize);
+            brothers.addAll(response.brothers);
+            mMeetABroAdapter.notifyItemRangeChanged(0, brothers.size());
+        }
+
     }
 }

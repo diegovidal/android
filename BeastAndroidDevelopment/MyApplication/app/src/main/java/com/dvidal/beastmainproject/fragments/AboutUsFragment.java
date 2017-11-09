@@ -1,5 +1,6 @@
 package com.dvidal.beastmainproject.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,15 +12,15 @@ import android.view.ViewGroup;
 
 import com.dvidal.beastmainproject.R;
 import com.dvidal.beastmainproject.activities.BaseActivity;
+import com.dvidal.beastmainproject.activities.PhotoPagerActivity;
+import com.dvidal.beastmainproject.activities.YoutubeActivity;
 import com.dvidal.beastmainproject.enties.EventCard;
+import com.dvidal.beastmainproject.infrastructure.BeastApplication;
 import com.dvidal.beastmainproject.services.EventCardServices;
 import com.dvidal.beastmainproject.views.AboutUsViews.AboutUsAdapter;
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by diegovidal on 08/12/16.
@@ -34,7 +35,7 @@ public class AboutUsFragment extends BaseFragment implements AboutUsAdapter.Abou
     private AboutUsAdapter mAboutUsAdapter;
 
     // UI
-    RecyclerView mRecycleView;
+    RecyclerView mRecyclerView;
 
     public static AboutUsFragment newInstance(){
 
@@ -58,19 +59,19 @@ public class AboutUsFragment extends BaseFragment implements AboutUsAdapter.Abou
         mBrotherhoodCards = mAboutUsAdapter.getmBrotherhoodEventCards();
         mSocialCards = mAboutUsAdapter.getmSocialEventCards();
 
-        mRecycleView = (RecyclerView) getView().findViewById(R.id.fragment_about_us_recycleView);
-        mRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView = (RecyclerView) getView().findViewById(R.id.fragment_about_us_recyclerView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         setUpAdapter();
 
-        bus.post(new EventCardServices.SearchCommunityServiceCardsRequest("Hello"));
-        bus.post(new EventCardServices.SearchBrotherhoodCardsRequest("Hello"));
-        bus.post(new EventCardServices.SearchSocialCardsRequest("Hello"));
+        bus.post(new EventCardServices.SearchCommunityServiceCardsRequest(BeastApplication.FIREBASE_EVENT_CARD_COMMUNITY));
+        bus.post(new EventCardServices.SearchBrotherhoodCardsRequest(BeastApplication.FIREBASE_EVENT_CARD_BROTHERHOOD));
+        bus.post(new EventCardServices.SearchSocialCardsRequest(BeastApplication.FIREBASE_EVENT_CARD_SOCIAL));
     }
 
     private void setUpAdapter(){
 
         if (isAdded()){
-            mRecycleView.setAdapter(mAboutUsAdapter);
+            mRecyclerView.setAdapter(mAboutUsAdapter);
         }
     }
 
@@ -78,10 +79,15 @@ public class AboutUsFragment extends BaseFragment implements AboutUsAdapter.Abou
     public void onEventCardClicked(EventCard eventCard) {
 
         if (!eventCard.isVideo()){
+            Intent intent = PhotoPagerActivity.newIntent(getActivity(), eventCard);
+            startActivity(intent);
 
             Log.i(AboutUsFragment.class.getSimpleName(), eventCard.getEventName() + " is a slide show");
 
         } else {
+            Intent intent = YoutubeActivity.newIntent(getActivity(), eventCard);
+            startActivity(intent);
+
             Log.i(AboutUsFragment.class.getSimpleName(), eventCard.getEventName() + " is a video");
         }
     }
@@ -89,21 +95,36 @@ public class AboutUsFragment extends BaseFragment implements AboutUsAdapter.Abou
     @Subscribe
     public void getCommunityServiceEvents(EventCardServices.SearchCommunityServiceCardsResponse response){
 
-        mCommunityServiceCards.clear();
-        mCommunityServiceCards.addAll(response.communityServiceCards);
+        int oldsize = mCommunityServiceCards.size();
+        if (oldsize == 0) {
+            mCommunityServiceCards.clear();
+            mAboutUsAdapter.notifyItemRangeChanged(0, oldsize);
+            mCommunityServiceCards.addAll(response.communityServiceCards);
+            mAboutUsAdapter.notifyItemRangeChanged(0, mCommunityServiceCards.size());
+        }
     }
 
     @Subscribe
     public void getBrotherhoodEvents(EventCardServices.SearchBrotherhoodCardsResponse response){
 
-        mBrotherhoodCards.clear();
-        mBrotherhoodCards.addAll(response.brotherhoodCards);
+        int oldsize = mBrotherhoodCards.size();
+        if (oldsize == 0) {
+            mBrotherhoodCards.clear();
+            mAboutUsAdapter.notifyItemRangeChanged(0, oldsize);
+            mBrotherhoodCards.addAll(response.brotherhoodCards);
+            mAboutUsAdapter.notifyItemRangeChanged(0, mBrotherhoodCards.size());
+        }
     }
 
     @Subscribe
     public void getSocialEvents(EventCardServices.SearchSocialCardsResponse response){
 
-        mSocialCards.clear();
-        mSocialCards.addAll(response.socialCards);
+        int oldsize = mSocialCards.size();
+        if (oldsize == 0) {
+            mSocialCards.clear();
+            mAboutUsAdapter.notifyItemRangeChanged(0, oldsize);
+            mSocialCards.addAll(response.socialCards);
+            mAboutUsAdapter.notifyItemRangeChanged(0, mSocialCards.size());
+        }
     }
 }

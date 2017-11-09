@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import com.dvidal.beastmainproject.R;
 import com.dvidal.beastmainproject.enties.Brother;
 import com.dvidal.beastmainproject.fragments.BrotherDetailsFragment;
+import com.dvidal.beastmainproject.infrastructure.BeastApplication;
 import com.dvidal.beastmainproject.services.BrotherServices;
 import com.squareup.otto.Subscribe;
 
@@ -38,7 +39,7 @@ public class BrotherPagerActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         mBrothers = new ArrayList<>();
-        bus.post(new BrotherServices.SearchBrotherRequest("Hello"));
+        bus.post(new BrotherServices.SearchBrotherRequest(BeastApplication.FIREBASE_BROTHER_REFERENCE));
         mViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -54,16 +55,16 @@ public class BrotherPagerActivity extends BaseActivity {
             }
         });
 
-        Brother brother = getIntent().getParcelableExtra(BROTHER_EXTRA_INFO);
-        int brotherId = brother.getBrotherId();
-
-        for (int i = 0; i < mBrothers.size(); i++){
-
-            if (mBrothers.get(i).getBrotherId() == brotherId){
-                mViewPager.setCurrentItem(i);
-                break;
-            }
-        }
+//        Brother brother = getIntent().getParcelableExtra(BROTHER_EXTRA_INFO);
+//        int brotherId = brother.getBrotherId();
+//
+//        for (int i = 0; i < mBrothers.size(); i++){
+//
+//            if (mBrothers.get(i).getBrotherId() == brotherId){
+//                mViewPager.setCurrentItem(i);
+//                break;
+//            }
+//        }
     }
 
     @Subscribe
@@ -71,6 +72,7 @@ public class BrotherPagerActivity extends BaseActivity {
 
         mBrothers.clear();
         mBrothers.addAll(response.brothers);
+        mViewPager.getAdapter().notifyDataSetChanged();
     }
 
     public static Intent newIntent(Context context, Brother brother){

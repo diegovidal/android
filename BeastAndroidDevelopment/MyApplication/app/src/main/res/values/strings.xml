@@ -9,5 +9,10 @@
     <string name="txt_intro_header">Introduction</string>
     <string name="txt_intro_body">This app was made by Diego Vidal and he is super awesome!
         Thaks to him I can make it now as well!</string>
+    
+    <string name="txt_follow_us">Follow Us On Social Media</string>
+    <string name="txt_rush_intro">What is Rush?</string>
+    <string name="txt_rush_explain">Rush is requirement</string>
+    <string name="txt_rush_events">Rush Events</string>
 
 </resources>

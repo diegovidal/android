@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "749640300319",
+    "firebase_url": "https://beastmainproject-179222.firebaseio.com",
+    "project_id": "beastmainproject-179222",
+    "storage_bucket": "beastmainproject-179222.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749640300319:android:23ba43d2754827a7",
+        "android_client_info": {
+          "package_name": "com.dvidal.beastmainproject.live"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749640300319-43oou3qlso3ivm1hg6u7jd3rr0ndi1gc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dvidal.beastmainproject.live",
+            "certificate_hash": "7976228bf8a73e810a12e99b4b0205e4ba2b7d11"
+          }
+        },
+        {
+          "client_id": "749640300319-abt344e1hvl9lbm54ftmv88h2v6i16sv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYUtkAX6aeWvqUoc2kbQtmdp6bkYs7Ka4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749640300319-abt344e1hvl9lbm54ftmv88h2v6i16sv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

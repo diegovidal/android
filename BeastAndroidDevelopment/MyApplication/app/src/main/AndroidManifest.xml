@@ -3,6 +3,7 @@
     package="com.dvidal.beastmainproject">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -13,8 +14,9 @@
         android:name=".infrastructure.BeastApplication">
 
         <activity
-            android:name=".activities.MainActivity"
-            android:screenOrientation="portrait">
+            android:name=".activities.SplashScreenActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashScreenStyle">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +29,33 @@
             android:name=".activities.BrotherPagerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/CustomDialogActivity"/>
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activities.PhotoPagerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CustomDialogActivity"/>
+
+        <activity
+            android:name=".activities.YoutubeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/YoutubeDialog"/>
+
+        <activity
+            android:name=".activities.MapsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activities.CampusMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <!-- GoogleMaps -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBZEeoBIMfvfuNIndrlTQGBPaLmGDMahzg"/>
 
     </application>
 
