@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "921156930070",
+    "firebase_url": "https://beastweather-50cc9.firebaseio.com",
+    "project_id": "beastweather-50cc9",
+    "storage_bucket": "beastweather-50cc9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921156930070:android:5a8a71ad38fbc36b",
+        "android_client_info": {
+          "package_name": "com.dvidal.beastweather"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921156930070-apqfd29ipjq4u08qf0edajuu1nbtrlfv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dvidal.beastweather",
+            "certificate_hash": "7976228bf8a73e810a12e99b4b0205e4ba2b7d11"
+          }
+        },
+        {
+          "client_id": "921156930070-7430athrfc3qprsrk8idq0bu16bv3ten.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBR90kj7I6p-xm5ikbZUOZ_gLEByKrlZ0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "921156930070-7430athrfc3qprsrk8idq0bu16bv3ten.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

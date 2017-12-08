@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.dvidal.beastmainproject"
         minSdkVersion 15
@@ -18,16 +18,19 @@ android {
         }
     }
 
+    flavorDimensions "default"
     productFlavors{
 
         inmemory{
 
             applicationId "com.dvidal.beastmainproject.inmemory"
+            dimension "default"
         }
 
         live{
 
             applicationId "com.dvidal.beastmainproject.live"
+            dimension "default"
         }
     }
 }
