@@ -22,12 +22,13 @@ public class BooksActivityPresenterTest {
 
         // given
         BooksActivityView view = new MockView();
-        BooksRepository booksRepository = new BooksRepository() {
-            @Override
-            public List<Book> getBooks() {
-                return Arrays.asList(new Book(), new Book(), new Book());
-            }
-        };
+        BooksRepository booksRepository = new MockBooksRepository(true);
+//        BooksRepository booksRepository = new BooksRepository() {
+//            @Override
+//            public List<Book> getBooks() {
+//                return Arrays.asList(new Book(), new Book(), new Book());
+//            }
+//        };
 
         // when
         BooksActivityPresenter presenter = new BooksActivityPresenter(view, booksRepository);
@@ -42,12 +43,13 @@ public class BooksActivityPresenterTest {
 
         // given
         BooksActivityView view = new MockView();
-        BooksRepository booksRepository = new BooksRepository() {
-            @Override
-            public List<Book> getBooks() {
-                return Collections.emptyList();
-            }
-        };
+        BooksRepository booksRepository = new MockBooksRepository(false);
+//        BooksRepository booksRepository = new BooksRepository() {
+//            @Override
+//            public List<Book> getBooks() {
+//                return Collections.emptyList();
+//            }
+//        };
 
         // when
         BooksActivityPresenter presenter = new BooksActivityPresenter(view, booksRepository);
@@ -75,22 +77,22 @@ public class BooksActivityPresenterTest {
         }
     }
 
-//    private class MockBooksRepository implements BooksRepository {
-//
-//        private boolean returnSomeBooks;
-//
-//        public MockBooksRepository(boolean returnSomeBooks) {
-//            this.returnSomeBooks = returnSomeBooks;
-//        }
-//
-//        @Override
-//        public List<Book> getBooks() {
-//
-//            if (returnSomeBooks)
-//                return Arrays.asList(new Book(), new Book(), new Book());
-//
-//            return Collections.emptyList();
-//        }
-//    }
+    private class MockBooksRepository implements BooksRepository {
+
+        private boolean returnSomeBooks;
+
+        public MockBooksRepository(boolean returnSomeBooks) {
+            this.returnSomeBooks = returnSomeBooks;
+        }
+
+        @Override
+        public List<Book> getBooks() {
+
+            if (returnSomeBooks)
+                return Arrays.asList(new Book(), new Book(), new Book());
+
+            return Collections.emptyList();
+        }
+    }
 
 }
