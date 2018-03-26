@@ -11,6 +11,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
 
 /**
  * Created by diegovidal on 08/01/2018.
@@ -31,7 +35,7 @@ public class BooksActivityPresenterTest {
 //        };
 
         // when
-        BooksActivityPresenter presenter = new BooksActivityPresenter(view, booksRepository);
+        BooksActivityPresenter presenter = new BooksActivityPresenter(view, booksRepository, Schedulers.trampoline());
         presenter.loadBooks();
 
         // then
@@ -52,7 +56,7 @@ public class BooksActivityPresenterTest {
 //        };
 
         // when
-        BooksActivityPresenter presenter = new BooksActivityPresenter(view, booksRepository);
+        BooksActivityPresenter presenter = new BooksActivityPresenter(view, booksRepository, Schedulers.trampoline());
         presenter.loadBooks();
 
         // then
@@ -75,6 +79,11 @@ public class BooksActivityPresenterTest {
 
             displayBooksWithNoBooksCalled = true;
         }
+
+        @Override
+        public void displayError() {
+
+        }
     }
 
     private class MockBooksRepository implements BooksRepository {
@@ -92,6 +101,11 @@ public class BooksActivityPresenterTest {
                 return Arrays.asList(new Book(), new Book(), new Book());
 
             return Collections.emptyList();
+        }
+
+        @Override
+        public Single<List<Book>> getBooksReactively() {
+            return null;
         }
     }
 

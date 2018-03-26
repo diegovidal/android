@@ -3,7 +3,6 @@ package com.dvidal.beastmainproject.infrastructure;
 import android.app.Application;
 
 import com.dvidal.beastmainproject.live.Module;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.otto.Bus;
 
