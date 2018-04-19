@@ -22,8 +22,8 @@ abstract class BaseActivity: AppCompatActivity(){
 
     var instanceId = ""
 
-//    @Inject
-//    lateinit var screenInjector: ScreenInjector
+    @Inject
+    lateinit var screenInjector: ScreenInjector
 
     private lateinit var router: Router
 

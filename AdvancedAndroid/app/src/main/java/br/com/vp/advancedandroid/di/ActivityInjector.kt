@@ -15,6 +15,8 @@ import dagger.android.AndroidInjector
 /**
  * @author diegovidal on 11/04/2018.
  */
+
+@JvmSuppressWildcards //TODO: Only works with this signature
 class ActivityInjector @Inject
 internal constructor(private val activityInjectors: Map<Class<out Activity>,
         Provider<AndroidInjector.Factory<out Activity>>>) {
