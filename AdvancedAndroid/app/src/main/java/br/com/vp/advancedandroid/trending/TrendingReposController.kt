@@ -12,6 +12,6 @@ import br.com.vp.advancedandroid.base.BaseController
 class TrendingReposController: BaseController() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
-        return container.rootView
+        return container
     }
 }

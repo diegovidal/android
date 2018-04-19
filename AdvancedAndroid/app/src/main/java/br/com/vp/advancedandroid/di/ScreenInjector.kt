@@ -1,14 +1,15 @@
 package br.com.vp.advancedandroid.di
 
 import android.app.Activity
-import android.app.Controller
-import android.content.Context
 import br.com.vp.advancedandroid.base.BaseActivity
+import br.com.vp.advancedandroid.base.BaseController
 import com.bluelinelabs.conductor.Controller
 import dagger.android.AndroidInjector
 import java.util.HashMap
 import javax.inject.Inject
+import javax.inject.Named
 import javax.inject.Provider
+import javax.inject.Singleton
 
 /**
  * @author diegovidal on 19/04/2018.
@@ -24,8 +25,8 @@ internal constructor(private val screenInjectors: Map<Class<out Controller>,
 
     fun inject(controller: Controller){
 
-        if (controller !is BaseActivity){
-            throw IllegalArgumentException("controller must extend BaseActivity")
+        if (controller !is BaseController){
+            throw IllegalArgumentException("controller must extend BaseController")
         }
 
         val instanceId = controller.instanceId
@@ -37,7 +38,7 @@ internal constructor(private val screenInjectors: Map<Class<out Controller>,
         }
 
         @Suppress("UNCHECKED_CAST")
-        val injectorFactory = this.screenInjectors[controller.javaClass].get()
+        val injectorFactory = screenInjectors[controller.javaClass]?.get()
                 as? AndroidInjector.Factory<Controller>
 
         injectorFactory?.let {
@@ -48,13 +49,13 @@ internal constructor(private val screenInjectors: Map<Class<out Controller>,
         }
     }
 
-    fun clear(Controller: Controller){
+    fun clear(controller: Controller){
 
-        if (Controller !is BaseActivity){
-            throw IllegalArgumentException("Controller must extend BaseActivity")
+        if (controller !is BaseController){
+            throw IllegalArgumentException("controller must extend BaseController")
         }
 
-        cache.remove(Controller.instanceId)
+        cache.remove(controller.instanceId)
     }
 
     companion object {
