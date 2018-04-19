@@ -15,7 +15,7 @@ import javax.inject.Singleton
  * @author diegovidal on 19/04/2018.
  */
 
-@JvmSuppressWildcards //TODO: Only works with this signature
+
 @ActivityScope
 class ScreenInjector @Inject
 internal constructor(private val screenInjectors: Map<Class<out Controller>,

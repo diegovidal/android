@@ -2,6 +2,7 @@ package br.com.vp.advancedandroid.base
 
 import android.app.Application
 import br.com.vp.advancedandroid.di.ActivityInjector
+import br.com.vp.advancedandroid.di.ScreenInjector
 import javax.inject.Inject
 
 /**
@@ -9,8 +10,9 @@ import javax.inject.Inject
  */
 class MyApplication : Application() {
 
-    @Inject
-    lateinit var activityInjector: ActivityInjector
+
+    var activityInjector: ActivityInjector? = null
+        @Inject set
 
     private lateinit var component: ApplicationComponent
 

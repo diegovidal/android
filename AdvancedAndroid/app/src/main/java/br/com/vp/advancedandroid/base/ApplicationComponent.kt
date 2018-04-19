@@ -1,5 +1,6 @@
 package br.com.vp.advancedandroid.base
 
+import android.app.Application
 import javax.inject.Singleton
 
 import dagger.Component
@@ -15,5 +16,5 @@ import dagger.Component
 ])
 interface ApplicationComponent {
 
-    fun inject(myApplication: MyApplication)
+    fun inject(application: Application)
 }
