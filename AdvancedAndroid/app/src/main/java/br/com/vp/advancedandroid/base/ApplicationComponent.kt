@@ -1,6 +1,7 @@
 package br.com.vp.advancedandroid.base
 
-import android.app.Application
+import br.com.vp.advancedandroid.home.MainScreenBindingModule
+import dagger.BindsInstance
 import javax.inject.Singleton
 
 import dagger.Component
@@ -12,9 +13,10 @@ import dagger.Component
 @Singleton
 @Component(modules = [
     ApplicationModule::class,
-    ActivityBindingModule::class
+    ActivityBindingModule::class,
+    MainScreenBindingModule::class
 ])
 interface ApplicationComponent {
 
-    fun inject(application: Application)
+    fun inject(application: MyApplication?)
 }

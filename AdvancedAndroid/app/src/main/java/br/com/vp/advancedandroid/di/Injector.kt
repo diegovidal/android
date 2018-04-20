@@ -21,16 +21,12 @@ class Injector {
 
         fun inject(controller: Controller){
 
-            controller.activity?.let {
-                ScreenInjector.get(controller.activity!!)?.inject(controller)
-            }
+            ScreenInjector.get(controller.activity!!)?.inject(controller)
         }
 
         fun clearComponent(controller: Controller) {
 
-            controller.activity?.let {
-                ScreenInjector.get(controller.activity!!)?.clear(controller)
-            }
+            ScreenInjector.get(controller.activity!!)?.clear(controller)
         }
     }
 }

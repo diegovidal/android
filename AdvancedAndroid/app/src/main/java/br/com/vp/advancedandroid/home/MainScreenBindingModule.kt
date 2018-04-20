@@ -1,6 +1,5 @@
 package br.com.vp.advancedandroid.home
 
-import android.app.Activity
 import br.com.vp.advancedandroid.di.ControllerKey
 import br.com.vp.advancedandroid.trending.TrendingReposComponent
 import br.com.vp.advancedandroid.trending.TrendingReposController

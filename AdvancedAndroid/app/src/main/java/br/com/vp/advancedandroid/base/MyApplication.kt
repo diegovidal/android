@@ -10,9 +10,8 @@ import javax.inject.Inject
  */
 class MyApplication : Application() {
 
-
-    var activityInjector: ActivityInjector? = null
-        @Inject set
+    @Inject
+    lateinit var activityInjector: ActivityInjector
 
     private lateinit var component: ApplicationComponent
 

@@ -15,10 +15,9 @@ import javax.inject.Singleton
  * @author diegovidal on 19/04/2018.
  */
 
-
-@ActivityScope
-class ScreenInjector @Inject
-internal constructor(private val screenInjectors: Map<Class<out Controller>,
+@JvmSuppressWildcards
+class ScreenInjector @Inject constructor(
+        private var screenInjectors: Map<Class<out Controller>,
         Provider<AndroidInjector.Factory<out Controller>>>) {
 
     private val cache = HashMap<String, AndroidInjector<out Controller>>()
@@ -51,10 +50,6 @@ internal constructor(private val screenInjectors: Map<Class<out Controller>,
 
     fun clear(controller: Controller){
 
-        if (controller !is BaseController){
-            throw IllegalArgumentException("controller must extend BaseController")
-        }
-
         cache.remove(controller.instanceId)
     }
 
@@ -62,8 +57,11 @@ internal constructor(private val screenInjectors: Map<Class<out Controller>,
 
         fun get(activity: Activity): ScreenInjector?{
 
-            val baseActivity = activity as? BaseActivity ?: return null
-            return baseActivity.screenInjector
+            if (activity !is BaseActivity){
+                throw IllegalArgumentException("Controller must extend BaseActivity")
+            }
+
+            return activity.screenInjector
         }
     }
 }
