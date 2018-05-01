@@ -15,6 +15,7 @@ buildscript {
     }
 }
 
+
 allprojects {
     repositories {
         google()
@@ -33,10 +34,15 @@ ext {
     moshiVersion = '1.5.0'
     autoValueVersion = '1.5.1'
     autoValueMoshiVersion = '0.4.3'
+    threeTenAbpVersion = '1.0.5'
     rxJavaVersion = '2.1.4'
     rxAndroidVersion = '2.0.1'
     rxRelayVersion = '2.0.0'
     conductorVersion = '2.1.4'
+    timberVersion = '4.7.0'
+    butterKnifeVersion = '8.8.1'
+    mockitoVersion = '1.5.0'
+
 }
 
 task clean(type: Delete) {

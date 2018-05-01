@@ -16,6 +16,7 @@ import javax.inject.Singleton
  */
 
 @JvmSuppressWildcards
+@ActivityScope
 class ScreenInjector @Inject constructor(
         private var screenInjectors: Map<Class<out Controller>,
         Provider<AndroidInjector.Factory<out Controller>>>) {

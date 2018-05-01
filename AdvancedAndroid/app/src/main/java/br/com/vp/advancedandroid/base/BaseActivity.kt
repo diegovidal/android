@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.ViewGroup
 import br.com.vp.advancedandroid.di.Injector
 import br.com.vp.advancedandroid.di.ScreenInjector
+import br.com.vp.advancedandroid.ui.ScreenNavigator
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
@@ -27,6 +28,9 @@ abstract class BaseActivity: AppCompatActivity(){
     @Inject
     lateinit var screenInjector: ScreenInjector
 
+    @Inject
+    lateinit var screenNavigator: ScreenNavigator
+
     private lateinit var router: Router
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +49,7 @@ abstract class BaseActivity: AppCompatActivity(){
         }
 
         router = Conductor.attachRouter(this, screen_container, savedInstanceState)
+        screenNavigator.initWithRouter(router, initialScreen())
         monitorBackStack()
         super.onCreate(savedInstanceState)
     }
@@ -55,8 +60,17 @@ abstract class BaseActivity: AppCompatActivity(){
         outState?.putString(INSTANCE_ID_KEY, instanceId)
     }
 
+    override fun onBackPressed() {
+
+        if (!screenNavigator.pop()) {
+            super.onBackPressed()
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        screenNavigator.clear()
+
         if (isFinishing){
             Injector.clearComponent(this)
         }
@@ -64,6 +78,8 @@ abstract class BaseActivity: AppCompatActivity(){
 
     @LayoutRes
     protected abstract fun layoutRes(): Int
+
+    protected abstract fun initialScreen(): Controller
 
     private fun monitorBackStack() {
 

@@ -1,6 +1,10 @@
 package br.com.vp.advancedandroid.trending
 
+import br.com.vp.advancedandroid.data.RepoServiceModule
 import br.com.vp.advancedandroid.di.ScreenScope
+import br.com.vp.advancedandroid.home.MainScreenBindingModule
+import br.com.vp.advancedandroid.networking.ServiceModule
+import br.com.vp.advancedandroid.ui.NavigationModule
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
 
