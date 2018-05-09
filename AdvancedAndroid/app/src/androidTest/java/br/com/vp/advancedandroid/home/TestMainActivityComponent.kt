@@ -1,6 +1,7 @@
 package br.com.vp.advancedandroid.home
 
 import br.com.vp.advancedandroid.di.ActivityScope
+import br.com.vp.advancedandroid.ui.NavigationModule
 import dagger.Subcomponent
 import dagger.android.AndroidInjector
 
@@ -10,7 +11,8 @@ import dagger.android.AndroidInjector
 
 @ActivityScope
 @Subcomponent(modules = [
-    TestScreenBindingModule::class
+    TestScreenBindingModule::class,
+    NavigationModule::class
 ])
 interface TestMainActivityComponent: AndroidInjector<MainActivity> {
 

@@ -42,6 +42,7 @@ ext {
     timberVersion = '4.7.0'
     butterKnifeVersion = '8.8.1'
     mockitoVersion = '1.5.0'
+    glideVersion = '4.7.1'
 
 }
 

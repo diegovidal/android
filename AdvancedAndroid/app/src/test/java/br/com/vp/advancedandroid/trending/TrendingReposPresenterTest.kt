@@ -1,9 +1,10 @@
 package br.com.vp.advancedandroid.trending
 
-import br.com.vp.advancedandroid.data.RepoRequester
+import br.com.vp.advancedandroid.data.RepoRepository
 import br.com.vp.advancedandroid.data.TrendingReposResponse
 import br.com.vp.advancedandroid.model.Repo
 import br.com.vp.advancedandroid.testutils.TestUtils
+import br.com.vp.advancedandroid.ui.ScreenNavigator
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyZeroInteractions
 import com.nhaarman.mockito_kotlin.whenever
@@ -22,18 +23,15 @@ import java.io.IOException
  */
 class TrendingReposPresenterTest {
 
-    @Mock
-    private lateinit var repoRequester: RepoRequester
-    @Mock
-    private lateinit var viewModel: TrendingReposViewModel
-    @Mock
-    private lateinit var onErrorConsumer: Consumer<Throwable>
-    @Mock
-    private lateinit var onSuccessConsumer: Consumer<List<Repo>>
-    @Mock
-    private lateinit var loadingConsumer: Consumer<Boolean>
+    @Mock private lateinit var repoRepository: RepoRepository
+    @Mock private lateinit var viewModel: TrendingReposViewModel
+    @Mock private lateinit var onErrorConsumer: Consumer<Throwable>
+    @Mock private lateinit var onSuccessConsumer: Consumer<List<Repo>>
+    @Mock private lateinit var loadingConsumer: Consumer<Boolean>
+    @Mock private lateinit var screenNavigator: ScreenNavigator
 
-    private var trendingReposPresenter: TrendingReposPresenter? = null
+    private var presenter: TrendingReposPresenter? = null
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
@@ -45,15 +43,26 @@ class TrendingReposPresenterTest {
 
     @Test
     fun onRepoClicked() {
+
+        val repo = TestUtils.loadJson("mock/get_repo", Repo::class.java)
+        setUpOnSuccess()
+        initPresenter()
+
+        repo?.let {
+
+            presenter?.onRepoClicked(repo)
+            verify(screenNavigator).goToRepoDetails(repo.owner.login, repo.name)
+        }
+
     }
 
     @Test
     fun reposLoaded() {
 
         val repos = setUpOnSuccess()
-        initializePresenter()
+        initPresenter()
 
-        verify(repoRequester).getTrendingRepos()
+        verify(repoRepository).getTrendingRepos()
         verify(onSuccessConsumer).accept(repos)
         verifyZeroInteractions(onErrorConsumer)
 
@@ -63,7 +72,7 @@ class TrendingReposPresenterTest {
     fun reposLoadedError() {
 
         val error = setUpOnError()
-        initializePresenter()
+        initPresenter()
 
         verify(onErrorConsumer).accept(error)
         verifyZeroInteractions(onSuccessConsumer)
@@ -73,7 +82,7 @@ class TrendingReposPresenterTest {
     fun loadingSuccess() {
 
         setUpOnSuccess()
-        initializePresenter()
+        initPresenter()
 
         val inOrder = Mockito.inOrder(loadingConsumer)
         inOrder.verify(loadingConsumer).accept(true)
@@ -84,7 +93,7 @@ class TrendingReposPresenterTest {
     fun loadingError() {
 
         setUpOnError()
-        initializePresenter()
+        initPresenter()
 
         val inOrder = Mockito.inOrder(loadingConsumer)
         inOrder.verify(loadingConsumer).accept(true)
@@ -96,20 +105,20 @@ class TrendingReposPresenterTest {
         val response = TestUtils.loadJson("mock/get_trending_repos", TrendingReposResponse::class.java)
         val repos = response?.repos
 
-        whenever(repoRequester.getTrendingRepos()).thenReturn(Single.just(repos))
+        whenever(repoRepository.getTrendingRepos()).thenReturn(Single.just(repos))
         return repos
     }
 
     private fun setUpOnError(): Throwable {
 
         val error = IOException()
-        whenever(repoRequester.getTrendingRepos()).thenReturn(Single.error(error))
+        whenever(repoRepository.getTrendingRepos()).thenReturn(Single.error(error))
 
         return error
     }
 
-    private fun initializePresenter(){
+    private fun initPresenter(){
 
-        trendingReposPresenter = TrendingReposPresenter(viewModel, repoRequester)
+        presenter = TrendingReposPresenter(viewModel, repoRepository, screenNavigator)
     }
 }

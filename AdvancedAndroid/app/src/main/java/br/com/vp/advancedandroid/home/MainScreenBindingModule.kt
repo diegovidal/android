@@ -1,5 +1,7 @@
 package br.com.vp.advancedandroid.home
 
+import br.com.vp.advancedandroid.details.RepoDetailsComponent
+import br.com.vp.advancedandroid.details.RepoDetailsController
 import br.com.vp.advancedandroid.di.ControllerKey
 import br.com.vp.advancedandroid.trending.TrendingReposComponent
 import br.com.vp.advancedandroid.trending.TrendingReposController
@@ -14,7 +16,8 @@ import dagger.multibindings.IntoMap
  */
 
 @Module(subcomponents = [
-    TrendingReposComponent::class
+    TrendingReposComponent::class,
+    RepoDetailsComponent::class
 ])
 abstract class MainScreenBindingModule {
 
@@ -22,5 +25,11 @@ abstract class MainScreenBindingModule {
     @IntoMap
     @ControllerKey(TrendingReposController::class)
     abstract fun bindTrendingReposInjector(builder: TrendingReposComponent.Builder):
+            AndroidInjector.Factory<out Controller>
+
+    @Binds
+    @IntoMap
+    @ControllerKey(RepoDetailsController::class)
+    abstract fun bindRepoDetailsInjector(builder: RepoDetailsComponent.Builder):
             AndroidInjector.Factory<out Controller>
 }

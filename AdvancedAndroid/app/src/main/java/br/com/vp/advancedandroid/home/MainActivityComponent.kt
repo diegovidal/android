@@ -2,6 +2,7 @@ package br.com.vp.advancedandroid.home
 
 import br.com.vp.advancedandroid.base.ActivityBindingModule
 import br.com.vp.advancedandroid.di.ActivityScope
+import br.com.vp.advancedandroid.di.ScreenScope
 import br.com.vp.advancedandroid.ui.NavigationModule
 import dagger.Subcomponent
 import dagger.android.AndroidInjector

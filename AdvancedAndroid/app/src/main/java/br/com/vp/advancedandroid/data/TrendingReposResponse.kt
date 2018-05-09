@@ -8,5 +8,5 @@ import com.squareup.moshi.Json
  */
 
 data class TrendingReposResponse(
-        @Json(name = "items") var repos: List<Repo>
+                @Json(name = "items") var repos: List<Repo>
         )

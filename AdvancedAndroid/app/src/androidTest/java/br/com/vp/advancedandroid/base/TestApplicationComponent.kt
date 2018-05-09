@@ -16,9 +16,8 @@ import javax.inject.Singleton
 @Component(modules = [
     ApplicationModule::class,
     TestActivityBindingModule::class,
-    TestRepoServiceModule::class,
     ServiceModule::class,
-    NavigationModule::class
+    TestRepoServiceModule::class
 ])
 interface TestApplicationComponent: ApplicationComponent {
 

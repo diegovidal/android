@@ -10,7 +10,7 @@ import org.threeten.bp.ZonedDateTime
 data class Repo(var id: Long,
                 var name: String,
                 var description: String,
-//                var user: User,
+                @Json(name = "owner") var owner: User,
                 @Json(name = "stargazers_count") var stargazersCount: Long,
                 @Json(name = "forks_count") var forksCount: Long,
                 @Json(name = "contributors_url") var contributorsUrl: String,

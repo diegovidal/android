@@ -11,8 +11,6 @@ import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.Router
-import dagger.Provides
-import dagger.multibindings.Multibinds
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import javax.inject.Inject
@@ -44,11 +42,11 @@ abstract class BaseActivity: AppCompatActivity(){
         Injector.inject(this)
         setContentView(layoutRes())
 
-        if (screen_container == null){
+        if (screenContainer == null){
             throw NullPointerException("Activity must have a view with id: screen_container")
         }
 
-        router = Conductor.attachRouter(this, screen_container, savedInstanceState)
+        router = Conductor.attachRouter(this, screenContainer, savedInstanceState)
         screenNavigator.initWithRouter(router, initialScreen())
         monitorBackStack()
         super.onCreate(savedInstanceState)

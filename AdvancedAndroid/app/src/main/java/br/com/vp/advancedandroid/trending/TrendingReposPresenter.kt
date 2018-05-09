@@ -1,8 +1,9 @@
 package br.com.vp.advancedandroid.trending
 
-import br.com.vp.advancedandroid.data.RepoRequester
+import br.com.vp.advancedandroid.data.RepoRepository
 import br.com.vp.advancedandroid.di.ScreenScope
 import br.com.vp.advancedandroid.model.Repo
+import br.com.vp.advancedandroid.ui.ScreenNavigator
 import javax.inject.Inject
 
 /**
@@ -10,10 +11,11 @@ import javax.inject.Inject
  */
 
 @ScreenScope
-class TrendingReposPresenter
-    @Inject constructor(private val viewModel: TrendingReposViewModel,
-                        private val repoRequester: RepoRequester):
-        RepoAdapter.RepoClickedListener {
+class TrendingReposPresenter @Inject
+        constructor(private val viewModel: TrendingReposViewModel,
+                    private val repoRepository: RepoRepository,
+                    private val screenNavigator: ScreenNavigator)
+        : RepoAdapter.RepoClickedListener {
 
     init {
         loadRepos()
@@ -21,15 +23,15 @@ class TrendingReposPresenter
 
     private fun loadRepos() {
 
-        repoRequester.getTrendingRepos()
-                ?.doOnSubscribe({ _ -> viewModel.loadingUpdated().accept(true) })
-                ?.doOnEvent({d, t-> viewModel.loadingUpdated().accept(false)})
+        repoRepository.getTrendingRepos()
+                .doOnSubscribe({ _ -> viewModel.loadingUpdated().accept(true) })
+                ?.doOnEvent({ _, _ -> viewModel.loadingUpdated().accept(false)})
                 ?.subscribe(viewModel.reposUpdated(), viewModel.onError())
 
     }
 
     override fun onRepoClicked(repo: Repo) {
 
-
+        screenNavigator.goToRepoDetails(repo.owner.login, repo.name)
     }
 }

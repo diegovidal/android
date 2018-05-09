@@ -1,5 +1,7 @@
 package br.com.vp.advancedandroid.data
 
+import br.com.vp.advancedandroid.model.Contributor
+import br.com.vp.advancedandroid.model.Repo
 import br.com.vp.advancedandroid.test.TestUtils
 import io.reactivex.Single
 import java.io.IOException
@@ -11,12 +13,12 @@ import javax.inject.Singleton
  */
 
 @Singleton
-class TestRepoService @Inject constructor(val testUtils: TestUtils)
+class TestRepoService @Inject constructor(private val testUtils: TestUtils)
     : RepoService {
 
     var sendError = false
 
-    override fun getTrendingRepos(): Single<TrendingReposResponse>? {
+    override fun getTrendingRepos(): Single<TrendingReposResponse> {
 
         if (!sendError){
             val response = testUtils.loadJson("mock/get_trending_repos", TrendingReposResponse::class.java)
@@ -24,5 +26,13 @@ class TestRepoService @Inject constructor(val testUtils: TestUtils)
         }
 
         return Single.error(IOException())
+    }
+
+    override fun getRepo(repoOwner: String, repoName: String): Single<Repo> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getContributors(url: String): Single<List<Contributor>> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

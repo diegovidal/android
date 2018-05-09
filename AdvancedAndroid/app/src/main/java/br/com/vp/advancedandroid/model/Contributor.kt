@@ -8,5 +8,5 @@ import com.squareup.moshi.Json
 
 data class Contributor(var id: Long,
                 var login: String,
-                @Json(name = "avatar_url") var avatarUrl: Long){
+                @Json(name = "avatar_url") var avatarUrl: String){
 }

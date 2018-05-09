@@ -1,6 +1,7 @@
 package br.com.vp.advancedandroid.base
 
 import android.content.Context
+import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,7 @@ import io.reactivex.disposables.Disposable
 /**
  * @author diegovidal on 18/04/2018.
  */
- abstract class BaseController: Controller() {
+ abstract class BaseController(bundle: Bundle? = null): Controller(bundle) {
 
     private val disposables = CompositeDisposable()
     private var injected = false

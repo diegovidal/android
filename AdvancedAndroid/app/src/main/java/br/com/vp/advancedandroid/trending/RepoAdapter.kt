@@ -45,6 +45,7 @@ internal class RepoAdapter(private val listener: RepoClickedListener) : Recycler
     }
 
     fun setData(repos: List<Repo>?) {
+
         if (repos != null) {
             val diffResult = DiffUtil.calculateDiff(RepoDiffCallback(data, repos))
             data.clear()
