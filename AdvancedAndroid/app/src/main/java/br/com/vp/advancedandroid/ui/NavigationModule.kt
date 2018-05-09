@@ -14,5 +14,6 @@ import javax.inject.Singleton
 abstract class NavigationModule {
 
     @Binds
+    @ActivityScope
     abstract fun bindScreenNavigator(defaultScreenNavigator: DefaultScreenNavigator): ScreenNavigator
 }

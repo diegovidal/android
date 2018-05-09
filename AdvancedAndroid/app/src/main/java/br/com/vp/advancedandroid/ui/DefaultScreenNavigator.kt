@@ -13,7 +13,6 @@ import javax.inject.Inject
  * @author diegovidal on 23/04/2018.
  */
 
-@ActivityScope
 class DefaultScreenNavigator @Inject
     constructor(): ScreenNavigator {
 

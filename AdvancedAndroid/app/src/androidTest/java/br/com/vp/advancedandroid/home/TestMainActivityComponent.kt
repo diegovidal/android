@@ -11,8 +11,7 @@ import dagger.android.AndroidInjector
 
 @ActivityScope
 @Subcomponent(modules = [
-    TestScreenBindingModule::class,
-    NavigationModule::class
+    TestScreenBindingModule::class
 ])
 interface TestMainActivityComponent: AndroidInjector<MainActivity> {
 

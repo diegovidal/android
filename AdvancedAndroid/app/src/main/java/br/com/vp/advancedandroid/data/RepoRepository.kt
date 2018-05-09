@@ -44,6 +44,12 @@ class RepoRepository @Inject
                 .subscribeOn(scheduler)
     }
 
+    fun clearCache() {
+
+        cachedTrendingRepos.clear()
+        cachedContributors.clear()
+    }
+
     private fun cachedContributors(url: String): Maybe<List<Contributor>> {
 
         return Maybe.create{e ->
