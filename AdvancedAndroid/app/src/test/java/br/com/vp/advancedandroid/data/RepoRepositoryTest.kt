@@ -33,7 +33,7 @@ class RepoRepositoryTest {
         MockitoAnnotations.initMocks(this)
         whenever(repoRequesterProvider.get()).thenReturn(repoRequester)
 
-        trendingReposResponse = TestUtils.loadJson("mock/get_trending_repos", TrendingReposResponse::class.java)
+        trendingReposResponse = TestUtils.loadJson("mock/search/get_trending_repos", TrendingReposResponse::class.java)
         whenever(repoRequester.getTrendingRepos()).thenReturn(Single.just(trendingReposResponse?.repos))
 
         rxJavaRepo = trendingReposResponse?.repos?.get(0)

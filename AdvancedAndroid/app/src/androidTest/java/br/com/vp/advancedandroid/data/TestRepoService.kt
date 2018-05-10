@@ -16,7 +16,8 @@ import javax.inject.Singleton
  */
 
 @Singleton
-class TestRepoService @Inject constructor(private val testUtils: TestUtils)
+class TestRepoService @Inject
+        constructor(private val testUtils: TestUtils)
     : RepoService {
 
     var errorFlags = 0
@@ -25,7 +26,8 @@ class TestRepoService @Inject constructor(private val testUtils: TestUtils)
     override fun getTrendingRepos(): Single<TrendingReposResponse> {
 
         if ((errorFlags and FLAG_TRENDING_REPOS) == 0){
-            val response = testUtils.loadJson("mock/get_trending_repos", TrendingReposResponse::class.java)
+            val response = testUtils.loadJson("mock/search/get_trending_repos",
+                    TrendingReposResponse::class.java)
 
             if ((holdFlags and FLAG_TRENDING_REPOS) == 0){
                 return holdingSingle(response, FLAG_TRENDING_REPOS)
@@ -38,9 +40,9 @@ class TestRepoService @Inject constructor(private val testUtils: TestUtils)
     override fun getRepo(repoOwner: String, repoName: String): Single<Repo> {
 
         if ((errorFlags and FLAG_GET_REPO) == 0){
-            val repo = testUtils.loadJson("mock/get_repo", Repo::class.java)
+            val repo = testUtils.loadJson("mock/repos/get_repo", Repo::class.java)
 
-            if ((holdFlags and FLAG_GET_REPO) == 0){
+            if ((holdFlags and FLAG_GET_REPO) == FLAG_GET_REPO){
                 return holdingSingle(repo, FLAG_GET_REPO)
             }
             return Single.just(repo)
@@ -51,10 +53,10 @@ class TestRepoService @Inject constructor(private val testUtils: TestUtils)
     override fun getContributors(url: String): Single<List<Contributor>> {
 
         if ((errorFlags and FLAG_GET_CONTRIBUTORS) == 0){
-            val contributors = testUtils.loadJson<List<Contributor>>("mock/get_contributors",
+            val contributors = testUtils.loadJson<List<Contributor>>("mock/repos/contributors/get_contributors",
                     Types.newParameterizedType(List::class.java, Contributor::class.java))
 
-            if ((holdFlags and FLAG_GET_CONTRIBUTORS) == 0){
+            if ((holdFlags and FLAG_GET_CONTRIBUTORS) == FLAG_GET_CONTRIBUTORS){
                 return holdingSingle(contributors, FLAG_GET_CONTRIBUTORS)
             }
             return Single.just(contributors)
@@ -75,7 +77,7 @@ class TestRepoService @Inject constructor(private val testUtils: TestUtils)
         return Single.create{ e ->
 
             val handler = Handler(Looper.getMainLooper())
-            val holdRunnable = object : Runnable {
+            object : Runnable {
                 override fun run() {
 
                     if ((holdFlags and flag) == flag){
@@ -86,9 +88,7 @@ class TestRepoService @Inject constructor(private val testUtils: TestUtils)
                         }
                     }
                 }
-            }
-
-            holdRunnable.run()
+            }.run()
         }
     }
 

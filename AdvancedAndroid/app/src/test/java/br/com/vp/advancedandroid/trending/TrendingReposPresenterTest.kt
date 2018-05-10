@@ -44,7 +44,7 @@ class TrendingReposPresenterTest {
     @Test
     fun onRepoClicked() {
 
-        val repo = TestUtils.loadJson("mock/get_repo", Repo::class.java)
+        val repo = TestUtils.loadJson("mock/repos/get_repo", Repo::class.java)
         setUpOnSuccess()
         initPresenter()
 
@@ -102,7 +102,7 @@ class TrendingReposPresenterTest {
 
     private fun setUpOnSuccess(): List<Repo>? {
 
-        val response = TestUtils.loadJson("mock/get_trending_repos", TrendingReposResponse::class.java)
+        val response = TestUtils.loadJson("mock/search/get_trending_repos", TrendingReposResponse::class.java)
         val repos = response?.repos
 
         whenever(repoRepository.getTrendingRepos()).thenReturn(Single.just(repos))

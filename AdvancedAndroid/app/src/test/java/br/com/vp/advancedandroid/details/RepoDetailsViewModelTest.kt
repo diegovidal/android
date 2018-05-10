@@ -19,8 +19,8 @@ class RepoDetailsViewModelTest {
 
     private lateinit var viewModel: RepoDetailsViewModel
 
-    private val repo = TestUtils.loadJson("mock/get_repo", Repo::class.java)
-    private val contributors = TestUtils.loadJson<List<Contributor>>("mock/get_contributors",
+    private val repo = TestUtils.loadJson("mock/repos/get_repo", Repo::class.java)
+    private val contributors = TestUtils.loadJson<List<Contributor>>("mock/repos/contributors/get_contributors",
             Types.newParameterizedType(List::class.java, Contributor::class.java))
 
     @Before
