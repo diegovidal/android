@@ -17,9 +17,11 @@ object NetworkModule {
     @JvmStatic
     @Provides
     @Singleton
-    fun provideOkHttp(): Call.Factory{
+    fun provideOkHttp(mockInterceptor: MockInterceptor): Call.Factory{
 
-        return OkHttpClient.Builder().build()
+        return OkHttpClient.Builder()
+                .addInterceptor(mockInterceptor)
+                .build()
     }
 
     @JvmStatic

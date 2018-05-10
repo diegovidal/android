@@ -13,7 +13,7 @@ import javax.inject.Inject
  * @author diegovidal on 01/05/2018.
  */
 class TestUtils
-    @Inject constructor(val moshi: Moshi) {
+    @Inject constructor(private val moshi: Moshi) {
 
     fun <T> loadJson(path: String, type: Type): T? {
         try {

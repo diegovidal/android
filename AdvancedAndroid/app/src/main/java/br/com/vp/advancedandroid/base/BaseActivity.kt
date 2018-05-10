@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.ViewGroup
 import br.com.vp.advancedandroid.di.Injector
 import br.com.vp.advancedandroid.di.ScreenInjector
+import br.com.vp.advancedandroid.ui.ActivityViewInterceptor
 import br.com.vp.advancedandroid.ui.ScreenNavigator
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
@@ -23,11 +24,9 @@ abstract class BaseActivity: AppCompatActivity(){
 
     var instanceId = ""
 
-    @Inject
-    lateinit var screenInjector: ScreenInjector
-
-    @Inject
-    lateinit var screenNavigator: ScreenNavigator
+    @Inject lateinit var screenInjector: ScreenInjector
+    @Inject lateinit var screenNavigator: ScreenNavigator
+    @Inject lateinit var activityViewInterceptor: ActivityViewInterceptor
 
     private lateinit var router: Router
 
@@ -40,7 +39,7 @@ abstract class BaseActivity: AppCompatActivity(){
         }
 
         Injector.inject(this)
-        setContentView(layoutRes())
+        activityViewInterceptor.setContentView(this, layoutRes())
 
         if (screenContainer == null){
             throw NullPointerException("Activity must have a view with id: screen_container")
@@ -72,6 +71,8 @@ abstract class BaseActivity: AppCompatActivity(){
         if (isFinishing){
             Injector.clearComponent(this)
         }
+
+        activityViewInterceptor.clear()
     }
 
     @LayoutRes

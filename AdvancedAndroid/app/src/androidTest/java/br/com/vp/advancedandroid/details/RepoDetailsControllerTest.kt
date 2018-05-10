@@ -23,24 +23,6 @@ class RepoDetailsControllerTest: ControllerTest() {
     }
 
     @Test
-    fun loadingRepo() {
-
-        repoService?.holdFlags = TestRepoService.FLAG_GET_REPO
-        launch()
-        RepoDetailsRobot
-                .verifyLoadingVisibility(ViewMatchers.Visibility.VISIBLE)
-    }
-
-    @Test
-    fun loadingContributors() {
-
-        repoService?.holdFlags = TestRepoService.FLAG_GET_CONTRIBUTORS
-        launch()
-        RepoDetailsRobot
-                .verifyContributorsLoadingVisibility(ViewMatchers.Visibility.VISIBLE)
-    }
-
-    @Test
     fun repoDetailsSuccess() {
 
         launch()
@@ -94,6 +76,24 @@ class RepoDetailsControllerTest: ControllerTest() {
                 .verifyContributorsErrorText(R.string.api_error_contributors)
                 .verifyErrorVisibility(ViewMatchers.Visibility.GONE)
 
+    }
+
+    @Test
+    fun loadingRepo() {
+
+        repoService?.holdFlags = TestRepoService.FLAG_GET_REPO
+        launch()
+        RepoDetailsRobot
+                .verifyLoadingVisibility(ViewMatchers.Visibility.VISIBLE)
+    }
+
+    @Test
+    fun loadingContributors() {
+
+        repoService?.holdFlags = TestRepoService.FLAG_GET_CONTRIBUTORS
+        launch()
+        RepoDetailsRobot
+                .verifyContributorsLoadingVisibility(ViewMatchers.Visibility.VISIBLE)
     }
 
     override fun controllerToLaunch(): Controller {

@@ -14,20 +14,16 @@ import javax.inject.Singleton
 @Module
 object NetworkModule {
 
-    companion object {
+    @Provides
+    @Singleton
+    fun provideOkHttp(): Call.Factory{
 
+        return OkHttpClient.Builder().build()
+    }
 
-        @Provides
-        @Singleton
-        fun provideOkHttp(): Call.Factory{
-
-            return OkHttpClient.Builder().build()
-        }
-
-        @Provides
-        @Named("base_url")
-        fun provideBaseUrl(): String{
-            return "https://api.github.com/"
-        }
+    @Provides
+    @Named("base_url")
+    fun provideBaseUrl(): String{
+        return "https://api.github.com/"
     }
 }

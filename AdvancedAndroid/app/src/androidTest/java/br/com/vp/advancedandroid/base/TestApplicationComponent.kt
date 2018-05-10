@@ -6,6 +6,7 @@ import br.com.vp.advancedandroid.data.TestRepoServiceModule
 import br.com.vp.advancedandroid.networking.ServiceModule
 import br.com.vp.advancedandroid.trending.TrendingReposControllerTest
 import br.com.vp.advancedandroid.ui.NavigationModule
+import br.com.vp.advancedandroid.ui.TestActivityViewInterceptorModule
 import br.com.vp.advancedandroid.ui.TestNavigationModule
 import br.com.vp.advancedandroid.ui.TestScreenNavigator
 import dagger.Component
@@ -22,7 +23,8 @@ import javax.inject.Singleton
     TestActivityBindingModule::class,
     ServiceModule::class,
     TestRepoServiceModule::class,
-    TestNavigationModule::class
+    TestNavigationModule::class,
+    TestActivityViewInterceptorModule::class
 ])
 interface TestApplicationComponent: ApplicationComponent {
 
