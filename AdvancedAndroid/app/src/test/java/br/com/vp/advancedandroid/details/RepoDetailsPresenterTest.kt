@@ -1,6 +1,7 @@
 package br.com.vp.advancedandroid.details
 
 import br.com.vp.advancedandroid.data.RepoRepository
+import br.com.vp.advancedandroid.lifecycle.DisposableManager
 import br.com.vp.advancedandroid.model.Contributor
 import br.com.vp.advancedandroid.model.Repo
 import br.com.vp.advancedandroid.testutils.TestUtils
@@ -13,6 +14,7 @@ import org.junit.Before
 import org.junit.Test
 
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import java.io.IOException
 
@@ -88,6 +90,6 @@ class RepoDetailsPresenterTest {
 
     private fun initPresenter() {
 
-        RepoDetailsPresenter(OWNER, NAME, repoRepository, viewModel)
+        RepoDetailsPresenter(OWNER, NAME, repoRepository, viewModel, Mockito.mock(DisposableManager::class.java))
     }
 }

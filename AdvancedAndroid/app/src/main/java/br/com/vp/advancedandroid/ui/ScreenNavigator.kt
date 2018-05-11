@@ -9,9 +9,7 @@ import com.bluelinelabs.conductor.Router
 
 interface ScreenNavigator {
 
-    fun initWithRouter(router: Router, rootScreen: Controller)
     fun pop(): Boolean
-    fun clear()
 
     fun goToRepoDetails(repoOwner: String, repoName: String)
 }

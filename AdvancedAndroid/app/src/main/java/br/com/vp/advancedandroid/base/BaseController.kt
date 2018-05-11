@@ -7,16 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.vp.advancedandroid.di.Injector
+import br.com.vp.advancedandroid.lifecycle.ScreenLifecycleTask
 import butterknife.ButterKnife
 import butterknife.Unbinder
 import com.bluelinelabs.conductor.Controller
+import com.bluelinelabs.conductor.ControllerChangeHandler
+import com.bluelinelabs.conductor.ControllerChangeType
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import javax.inject.Inject
 
 /**
  * @author diegovidal on 18/04/2018.
  */
  abstract class BaseController(bundle: Bundle? = null): Controller(bundle) {
+
+    @Inject lateinit var screenLifecycleTask: MutableSet<ScreenLifecycleTask>
 
     private val disposables = CompositeDisposable()
     private var injected = false
@@ -42,11 +48,29 @@ import io.reactivex.disposables.Disposable
         return view
     }
 
+    override fun onChangeStarted(changeHandler: ControllerChangeHandler, changeType: ControllerChangeType) {
+
+        for (task in screenLifecycleTask){
+            if (changeType.isEnter){
+                task.onEnterScope(view)
+            } else {
+                task.onExitScope()
+            }
+        }
+    }
+
     override fun onDestroyView(view: View) {
 
         disposables.clear()
         unbinder?.unbind()
         unbinder = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        for (task in screenLifecycleTask){
+            task.onDestroy()
+        }
     }
 
     internal open fun onViewBound(view: View) {

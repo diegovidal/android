@@ -95,7 +95,7 @@ public class MockitoBooksActivityPresenterTest {
 
         //given
 //        when(booksRepository.getBooks()).thenThrow(new Throwable("boom!"));
-        when(booksRepository.getBooksReactively()).thenReturn(Single.<List<Book>>error(new Throwable("Bum!")));
+        when(booksRepository.getBooksReactively()).thenReturn(Single.error(new Throwable("Bum!")));
 
         //when
 //        presenter.loadBooks();

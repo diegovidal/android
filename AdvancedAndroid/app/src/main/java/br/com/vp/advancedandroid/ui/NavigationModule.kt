@@ -2,8 +2,10 @@ package br.com.vp.advancedandroid.ui
 
 import br.com.vp.advancedandroid.di.ActivityScope
 import br.com.vp.advancedandroid.di.ScreenScope
+import br.com.vp.advancedandroid.lifecycle.ActivityLifecycleTask
 import dagger.Binds
 import dagger.Module
+import dagger.multibindings.IntoSet
 import javax.inject.Singleton
 
 /**
@@ -14,6 +16,9 @@ import javax.inject.Singleton
 abstract class NavigationModule {
 
     @Binds
-    @ActivityScope
     abstract fun bindScreenNavigator(defaultScreenNavigator: DefaultScreenNavigator): ScreenNavigator
+
+    @Binds
+    @IntoSet
+    abstract fun bindScreenNavigatorTask(screenNavigator: DefaultScreenNavigator): ActivityLifecycleTask
 }

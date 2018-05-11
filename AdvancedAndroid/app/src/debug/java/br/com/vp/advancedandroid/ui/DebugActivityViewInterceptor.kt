@@ -17,7 +17,7 @@ import javax.inject.Inject
  * @author diegovidal on 09/05/2018.
  */
 class DebugActivityViewInterceptor @Inject
-        constructor(val debugPreferences: DebugPreferences)
+        constructor(private val debugPreferences: DebugPreferences)
     : ActivityViewInterceptor {
 
     @BindView(R.id.sw_mock_responses) lateinit var mockResponseSwitch: Switch

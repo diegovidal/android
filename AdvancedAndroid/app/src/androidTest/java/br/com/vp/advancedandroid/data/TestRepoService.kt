@@ -57,7 +57,7 @@ class TestRepoService @Inject
                     Types.newParameterizedType(List::class.java, Contributor::class.java))
 
             if ((holdFlags and FLAG_GET_CONTRIBUTORS) == FLAG_GET_CONTRIBUTORS){
-                return holdingSingle(contributors, FLAG_GET_CONTRIBUTORS)
+                return holdingSingle2(contributors, FLAG_GET_CONTRIBUTORS)
             }
             return Single.just(contributors)
         }
@@ -73,6 +73,27 @@ class TestRepoService @Inject
     }
 
     private fun <T> holdingSingle(result: T?, flag: Int): Single<T>{
+
+        return Single.create{ e ->
+
+            val handler = Handler(Looper.getMainLooper())
+            object : Runnable {
+                override fun run() {
+
+                    if ((holdFlags and flag) == flag){
+                        handler.postDelayed(this, 50)
+                    } else {
+                        result?.let {
+                            e.onSuccess(it)
+                        }
+                    }
+                }
+            }.run()
+        }
+    }
+
+    // TODO: FIX LOOP BUG IN LoadingContributorsTest
+    private fun <T> holdingSingle2(result: T?, flag: Int): Single<T>{
 
         return Single.create{ e ->
 

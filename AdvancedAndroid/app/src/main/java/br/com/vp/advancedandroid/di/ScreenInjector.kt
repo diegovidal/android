@@ -51,7 +51,10 @@ class ScreenInjector @Inject constructor(
 
     fun clear(controller: Controller){
 
-        cache.remove(controller.instanceId)
+        val injector = cache.remove(controller.instanceId)
+        if (injector is ScreenComponent){
+            injector.disposableManager().dispose()
+        }
     }
 
     companion object {
