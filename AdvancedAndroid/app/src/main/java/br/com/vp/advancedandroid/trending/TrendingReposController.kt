@@ -19,20 +19,13 @@ import javax.inject.Inject
 
 class TrendingReposController: BaseController() {
 
-    @BindView(R.id.repo_list)
-    lateinit var repoList: RecyclerView
+    @BindView(R.id.repo_list) lateinit var repoList: RecyclerView
+    @BindView(R.id.loading_indicator) lateinit var loadingIndicator: ProgressBar
+    @BindView(R.id.tv_error) lateinit var errorText: TextView
 
-    @BindView(R.id.loading_indicator)
-    lateinit var loadingIndicator: ProgressBar
+    @Inject lateinit var presenter: TrendingReposPresenter
 
-    @BindView(R.id.tv_error)
-    lateinit var errorText: TextView
-
-    @Inject
-    lateinit var presenter: TrendingReposPresenter
-
-    @Inject
-    lateinit var viewModel: TrendingReposViewModel
+    @Inject lateinit var viewModel: TrendingReposViewModel
 
     override fun onViewBound(view: View) {
 

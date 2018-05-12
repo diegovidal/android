@@ -17,7 +17,7 @@ class TrendingReposPresenter @Inject
         constructor(private val viewModel: TrendingReposViewModel,
                     private val repoRepository: RepoRepository,
                     private val screenNavigator: ScreenNavigator,
-                    @ForScreen val disposableManager: DisposableManager)
+                    @ForScreen private val disposableManager: DisposableManager)
         : RepoAdapter.RepoClickedListener {
 
     init {
