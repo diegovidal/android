@@ -5,6 +5,7 @@ import br.com.vp.advancedandroid.di.ScreenScope
 import br.com.vp.advancedandroid.model.Repo
 import com.jakewharton.rxrelay2.BehaviorRelay
 import io.reactivex.Observable
+import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
 import timber.log.Timber
 import javax.inject.Inject
@@ -17,22 +18,20 @@ import kotlin.concurrent.thread
 @ScreenScope
 class TrendingReposViewModel @Inject constructor() {
 
-    private val reposRelay: BehaviorRelay<List<Repo>> = BehaviorRelay.create()
     private val errorRelay: BehaviorRelay<Int> = BehaviorRelay.create()
     private val loadingRelay: BehaviorRelay<Boolean> = BehaviorRelay.create()
 
     fun loading(): Observable<Boolean> = loadingRelay
 
-    fun repos(): Observable<List<Repo>> = reposRelay
-
     fun error(): Observable<Int> = errorRelay
 
     fun loadingUpdated(): Consumer<Boolean> = loadingRelay
 
-    fun reposUpdated(): Consumer<List<Repo>> {
+    fun reposUpdated(): Action {
 
-        errorRelay.accept(-1)
-        return reposRelay
+        return Action {
+            errorRelay.accept(-1)
+        }
     }
 
     fun onError(): Consumer<Throwable> {

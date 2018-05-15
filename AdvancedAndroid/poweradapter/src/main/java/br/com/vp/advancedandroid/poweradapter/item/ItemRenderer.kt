@@ -1,4 +1,4 @@
-package br.com.vp.poweradapter.item
+package br.com.vp.advancedandroid.poweradapter.item
 
 import android.support.annotation.LayoutRes
 import android.view.View
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 /**
  * @author diegovidal on 11/05/2018.
  */
+
 interface ItemRenderer<T: RecyclerItem> {
 
     @LayoutRes

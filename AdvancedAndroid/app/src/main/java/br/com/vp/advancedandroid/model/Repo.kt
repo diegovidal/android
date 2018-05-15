@@ -1,6 +1,6 @@
 package br.com.vp.advancedandroid.model
 
-import br.com.vp.poweradapter.item.RecyclerItem
+import br.com.vp.advancedandroid.poweradapter.item.RecyclerItem
 import com.squareup.moshi.Json
 import org.threeten.bp.ZonedDateTime
 
@@ -17,4 +17,13 @@ data class Repo(var id: Long,
                 @Json(name = "contributors_url") var contributorsUrl: String,
                 @Json(name = "created_at") var createdDate: ZonedDateTime,
                 @Json(name = "updated_at") var updatedDate: ZonedDateTime
-            )
+            ): RecyclerItem {
+
+    override fun getItemId(): Long {
+        return id
+    }
+
+    override fun renderKey(): String {
+        return "Repo"
+    }
+}

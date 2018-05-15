@@ -3,11 +3,12 @@ package br.com.vp.advancedandroid.trending
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import br.com.vp.advancedandroid.R
 import br.com.vp.advancedandroid.base.BaseController
+import br.com.vp.advancedandroid.poweradapter.adapter.RecyclerAdapter
+import br.com.vp.advancedandroid.poweradapter.adapter.RecyclerDataSource
 import butterknife.BindView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -24,13 +25,13 @@ class TrendingReposController: BaseController() {
     @BindView(R.id.tv_error) lateinit var errorText: TextView
 
     @Inject lateinit var presenter: TrendingReposPresenter
-
     @Inject lateinit var viewModel: TrendingReposViewModel
+    @Inject lateinit var dataSource: RecyclerDataSource
 
     override fun onViewBound(view: View) {
 
         repoList.layoutManager = LinearLayoutManager(view.context)
-        repoList.adapter = RepoAdapter(presenter)
+        repoList.adapter = RecyclerAdapter(dataSource)
     }
 
     override fun subscriptions(): Array<Disposable> {
@@ -46,10 +47,6 @@ class TrendingReposController: BaseController() {
                         errorText.visibility = if (loading) View.GONE else errorText.visibility
                     }
                 }),
-
-                viewModel.repos()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe((repoList.adapter as RepoAdapter)::setData),
 
                 viewModel.error()
                         .observeOn(AndroidSchedulers.mainThread())

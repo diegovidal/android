@@ -1,7 +1,7 @@
-package br.com.vp.poweradapter.adapter
+package br.com.vp.advancedandroid.poweradapter.adapter
 
 import android.support.v7.util.DiffUtil
-import br.com.vp.poweradapter.item.RecyclerItem
+import br.com.vp.advancedandroid.poweradapter.item.RecyclerItem
 
 /**
  * @author diegovidal on 11/05/2018.
@@ -20,7 +20,7 @@ class RecyclerDiffCallback
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        return oldList[oldItemPosition].getId() == newList[newItemPosition].getId()
+        return oldList[oldItemPosition].getItemId() == newList[newItemPosition].getItemId()
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

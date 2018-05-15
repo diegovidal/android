@@ -1,12 +1,12 @@
-package br.com.vp.poweradapter.adapter
+package br.com.vp.advancedandroid.poweradapter.adapter
 
 import android.support.annotation.LayoutRes
 import android.support.annotation.MainThread
 import android.support.annotation.VisibleForTesting
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
-import br.com.vp.poweradapter.item.ItemRenderer
-import br.com.vp.poweradapter.item.RecyclerItem
+import br.com.vp.advancedandroid.poweradapter.item.ItemRenderer
+import br.com.vp.advancedandroid.poweradapter.item.RecyclerItem
 import java.lang.ref.WeakReference
 
 /**
@@ -14,7 +14,7 @@ import java.lang.ref.WeakReference
  */
 
 class RecyclerDataSource
-        constructor(private val renderers: Map<String, ItemRenderer<out RecyclerItem>>) {
+        constructor(private val renderers: MutableMap<String, ItemRenderer<out RecyclerItem>>) {
 
     private val viewTypeToRendererKeyMap = mutableMapOf<Int, String>()
     private val data = arrayListOf<RecyclerItem>()
@@ -22,12 +22,14 @@ class RecyclerDataSource
     private var adapterReference: WeakReference<RecyclerView.Adapter<*>>? = WeakReference<RecyclerView.Adapter<*>>(null)
 
     init {
+
         for (entry in renderers.entries){
             viewTypeToRendererKeyMap[entry.value.layoutRes()] = entry.key
         }
     }
 
-    fun setData(newData: List<out RecyclerItem>){
+    @MainThread
+    fun setData(newData: List<RecyclerItem>){
 
         val diffResult = DiffUtil.calculateDiff(RecyclerDiffCallback(data, newData))
         data.clear()
@@ -39,10 +41,10 @@ class RecyclerDataSource
         }
     }
 
-    fun rendererForType(viewType: Int): ItemRenderer<RecyclerItem>? {
+    fun rendererForType(viewType: Int): ItemRenderer<out RecyclerItem>? {
 
         @Suppress("UNCHECKED_CAST")
-        return renderers[viewTypeToRendererKeyMap[viewType]] as? ItemRenderer<RecyclerItem>
+        return renderers[viewTypeToRendererKeyMap[viewType]]
     }
 
     @LayoutRes

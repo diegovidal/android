@@ -5,7 +5,10 @@ import br.com.vp.advancedandroid.di.ForScreen
 import br.com.vp.advancedandroid.di.ScreenScope
 import br.com.vp.advancedandroid.lifecycle.DisposableManager
 import br.com.vp.advancedandroid.model.Repo
+import br.com.vp.advancedandroid.poweradapter.adapter.RecyclerDataSource
 import br.com.vp.advancedandroid.ui.ScreenNavigator
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
 /**
@@ -17,8 +20,8 @@ class TrendingReposPresenter @Inject
         constructor(private val viewModel: TrendingReposViewModel,
                     private val repoRepository: RepoRepository,
                     private val screenNavigator: ScreenNavigator,
-                    @ForScreen private val disposableManager: DisposableManager)
-        : RepoAdapter.RepoClickedListener {
+                    private val dataSource: RecyclerDataSource,
+                    @ForScreen private val disposableManager: DisposableManager) {
 
     init {
         loadRepos()
@@ -29,11 +32,13 @@ class TrendingReposPresenter @Inject
         disposableManager.add(repoRepository.getTrendingRepos()
                 .doOnSubscribe({ _ -> viewModel.loadingUpdated().accept(true) })
                 ?.doOnEvent({ _, _ -> viewModel.loadingUpdated().accept(false)})
-                ?.subscribe(viewModel.reposUpdated(), viewModel.onError()))
+                ?.doOnSuccess({_ -> viewModel.reposUpdated().run()})
+                ?.observeOn(AndroidSchedulers.mainThread())
+                ?.subscribe(Consumer<List<Repo>> { dataSource.setData(it) }, viewModel.onError()))
 
     }
 
-    override fun onRepoClicked(repo: Repo) {
+    fun onRepoClicked(repo: Repo) {
 
         screenNavigator.goToRepoDetails(repo.owner.login, repo.name)
     }

@@ -1,9 +1,7 @@
-package br.com.vp.poweradapter.adapter
+package br.com.vp.advancedandroid.poweradapter.adapter
 
 import android.view.View
 import android.view.ViewGroup
-import br.com.vp.poweradapter.item.ItemRenderer
-import br.com.vp.poweradapter.item.RecyclerItem
 import org.junit.Before
 import org.junit.Test
 
@@ -63,8 +61,7 @@ class RecyclerDataSourceTest {
 
     internal class TestItem
             constructor(val mId: Long,
-                        val mKey: String)
-        : RecyclerItem {
+                        val mKey: String) {
 
         override fun getId(): Long {
             return mId
@@ -76,8 +73,7 @@ class RecyclerDataSourceTest {
     }
 
     internal class TestRender
-            constructor(val layoutRes: Int)
-        : ItemRenderer<RecyclerItem> {
+            constructor(val layoutRes: Int) {
 
         override fun layoutRes(): Int {
             return layoutRes

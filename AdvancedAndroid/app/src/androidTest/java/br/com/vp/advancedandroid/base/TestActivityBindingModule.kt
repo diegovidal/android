@@ -1,12 +1,8 @@
 package br.com.vp.advancedandroid.base
 
 import android.app.Activity
-import br.com.vp.advancedandroid.di.ControllerKey
 import br.com.vp.advancedandroid.home.MainActivity
 import br.com.vp.advancedandroid.home.TestMainActivityComponent
-import br.com.vp.advancedandroid.trending.TrendingReposComponent
-import br.com.vp.advancedandroid.trending.TrendingReposController
-import com.bluelinelabs.conductor.Controller
 import dagger.Binds
 import dagger.Module
 import dagger.android.ActivityKey

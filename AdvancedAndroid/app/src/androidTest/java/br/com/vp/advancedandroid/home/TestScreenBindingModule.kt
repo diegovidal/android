@@ -3,7 +3,6 @@ package br.com.vp.advancedandroid.home
 import br.com.vp.advancedandroid.details.RepoDetailsComponent
 import br.com.vp.advancedandroid.details.RepoDetailsController
 import br.com.vp.advancedandroid.di.ControllerKey
-import br.com.vp.advancedandroid.trending.TrendingReposComponent
 import br.com.vp.advancedandroid.trending.TrendingReposController
 import com.bluelinelabs.conductor.Controller
 import dagger.Binds

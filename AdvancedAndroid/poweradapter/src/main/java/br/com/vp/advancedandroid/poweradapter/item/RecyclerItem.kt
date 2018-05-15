@@ -1,11 +1,10 @@
-package br.com.vp.poweradapter.item
+package br.com.vp.advancedandroid.poweradapter.item
 
 /**
  * @author diegovidal on 11/05/2018.
  */
 interface RecyclerItem {
 
-    fun getId(): Long
-
+    fun getItemId(): Long
     fun renderKey(): String
 }
