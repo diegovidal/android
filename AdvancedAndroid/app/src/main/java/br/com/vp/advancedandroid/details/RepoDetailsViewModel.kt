@@ -10,6 +10,7 @@ import io.reactivex.functions.Consumer
 import org.threeten.bp.format.DateTimeFormatter
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.reflect.jvm.internal.impl.load.kotlin.JvmType
 
 /**
  * @author diegovidal on 02/05/2018.
@@ -49,13 +50,12 @@ class RepoDetailsViewModel @Inject constructor(){
         })
     }
 
-    fun processContributors(): Consumer<List<Contributor>> {
+    fun contributorsLoaded(): Consumer<Any> {
 
-        return Consumer({ contributors ->
+        return Consumer({ _ ->
 
             contributorStateRelay.accept(
-                    ContributorState(false,
-                            contributors)
+                    ContributorState(false)
             )
         })
     }

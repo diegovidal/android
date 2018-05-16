@@ -4,12 +4,10 @@ import br.com.vp.advancedandroid.R
 import br.com.vp.advancedandroid.model.Contributor
 import br.com.vp.advancedandroid.model.Repo
 import br.com.vp.advancedandroid.testutils.TestUtils
-import com.nhaarman.mockito_kotlin.any
 import com.squareup.moshi.Types
 import org.junit.Before
 import org.junit.Test
 
-import org.junit.Assert.*
 import java.io.IOException
 
 /**
@@ -20,8 +18,6 @@ class RepoDetailsViewModelTest {
     private lateinit var viewModel: RepoDetailsViewModel
 
     private val repo = TestUtils.loadJson("mock/repos/get_repo", Repo::class.java)
-    private val contributors = TestUtils.loadJson<List<Contributor>>("mock/repos/contributors/get_contributors",
-            Types.newParameterizedType(List::class.java, Contributor::class.java))
 
     @Before
     fun setUp() {
@@ -55,10 +51,9 @@ class RepoDetailsViewModelTest {
     @Test
     fun contributors() {
 
-        viewModel.processContributors().accept(contributors)
+        viewModel.contributorsLoaded().accept(Any())
         viewModel.contributors().test().assertValue(
-                ContributorState(false,
-                        contributors)
+                ContributorState(false)
         )
     }
 

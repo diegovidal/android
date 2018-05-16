@@ -30,6 +30,7 @@ class TrendingReposUiManager @Inject
             unbinder = ButterKnife.bind(this, view)
             toolbar.setTitle(R.string.screen_title_trending)
         }
+
     }
 
     override fun onExitScope() {

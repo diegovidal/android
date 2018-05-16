@@ -8,6 +8,8 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import br.com.vp.advancedandroid.R
 import br.com.vp.advancedandroid.base.BaseController
+import br.com.vp.advancedandroid.poweradapter.adapter.RecyclerAdapter
+import br.com.vp.advancedandroid.poweradapter.adapter.RecyclerDataSource
 import butterknife.BindView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -17,12 +19,6 @@ import javax.inject.Inject
  * @author diegovidal on 01/05/2018.
  */
 class RepoDetailsController(bundle: Bundle): BaseController(bundle){
-
-    @Inject
-    lateinit var viewModel: RepoDetailsViewModel
-
-    @Inject
-    lateinit var presenter: RepoDetailsPresenter
 
     @BindView(R.id.tv_repo_name) lateinit var repoNameText: TextView
     @BindView(R.id.tv_repo_description) lateinit var repoDescriptionText: TextView
@@ -35,9 +31,13 @@ class RepoDetailsController(bundle: Bundle): BaseController(bundle){
     @BindView(R.id.tv_error) lateinit var errorText: TextView
     @BindView(R.id.tv_contributors_error) lateinit var contributorsErrorText: TextView
 
+    @Inject lateinit var viewModel: RepoDetailsViewModel
+    @Inject lateinit var presenter: RepoDetailsPresenter
+    @Inject lateinit var dataSource: RecyclerDataSource
+
     override fun onViewBound(view: View) {
         contributorList.layoutManager = LinearLayoutManager(view.context)
-        contributorList.adapter = ContributorAdapter()
+        contributorList.adapter = RecyclerAdapter(dataSource)
     }
 
     override fun subscriptions(): Array<Disposable> {
@@ -83,7 +83,6 @@ class RepoDetailsController(bundle: Bundle): BaseController(bundle){
                             if (contributorsDetails.isSuccess()) {
 
                                 contributorsErrorText.text = null
-                                (contributorList.adapter as? ContributorAdapter)?.setData(contributorsDetails.contributors)
                             } else {
 
                                 contributorsErrorText.setText(contributorsDetails?.errorRes ?: R.string.api_error_contributors)

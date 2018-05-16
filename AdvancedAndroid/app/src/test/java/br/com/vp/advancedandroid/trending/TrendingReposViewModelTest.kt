@@ -30,19 +30,11 @@ class TrendingReposViewModelTest {
     }
 
     @Test
-    fun repos() {
-        val response = TestUtils.loadJson("mock/search/get_trending_repos", TrendingReposResponse::class.java)
-        viewModel.reposUpdated().accept(response?.repos)
-
-        viewModel.repos().test().assertValue(response?.repos)
-    }
-
-    @Test
     fun error() {
         val errorObserver = viewModel.error().test()
         viewModel.onError().accept(IOException())
 
-        viewModel.reposUpdated().accept(emptyList())
+        viewModel.reposUpdated().run()
 
         errorObserver.assertValues(R.string.api_error_repos, -1)
     }
