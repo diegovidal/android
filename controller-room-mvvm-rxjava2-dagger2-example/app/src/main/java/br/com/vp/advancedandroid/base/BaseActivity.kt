@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.view.ViewGroup
-import br.com.vp.advancedandroid.R.id.screenContainer
+import br.com.vp.advancedandroid.R
 import br.com.vp.advancedandroid.di.Injector
 import br.com.vp.advancedandroid.di.ScreenInjector
 import br.com.vp.advancedandroid.lifecycle.ActivityLifecycleTask
@@ -15,7 +15,6 @@ import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.Router
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 import javax.inject.Inject
 
@@ -45,9 +44,8 @@ abstract class BaseActivity: AppCompatActivity(), RouterProvider{
         Injector.inject(this)
         activityViewInterceptor.setContentView(this, layoutRes())
 
-        if (screenContainer == null){
+        val screenContainer = findViewById<ViewGroup>(R.id.screen_container) ?:
             throw NullPointerException("Activity must have a view with id: screen_container")
-        }
 
         router = Conductor.attachRouter(this, screenContainer, savedInstanceState)
         monitorBackStack()
