@@ -2,6 +2,8 @@ package br.com.vp.advancedandroid.poweradapter.adapter
 
 import android.view.View
 import android.view.ViewGroup
+import br.com.vp.advancedandroid.poweradapter.item.ItemRenderer
+import br.com.vp.advancedandroid.poweradapter.item.RecyclerItem
 import org.junit.Before
 import org.junit.Test
 
@@ -12,8 +14,8 @@ import org.junit.Assert.*
  */
 class RecyclerDataSourceTest {
 
-    private val rendererOne = TestRender(1)
-    private val rendererTwo = TestRender(2)
+    private val rendererOne: ItemRenderer<out RecyclerItem> = TestRender(1)
+    private val rendererTwo: ItemRenderer<out RecyclerItem> = TestRender(2)
 
     private val itemOne = TestItem(1, "r1")
     private val itemTwo = TestItem(2, "r1")
@@ -24,7 +26,7 @@ class RecyclerDataSourceTest {
     @Before
     fun setUp() {
         val items = arrayListOf(itemOne, itemTwo, itemThree)
-        val renderers = hashMapOf(
+        val renderers = mutableMapOf(
                 Pair("r1",rendererOne),
                 Pair("r2",rendererTwo)
         )
@@ -35,15 +37,15 @@ class RecyclerDataSourceTest {
     @Test
     fun rendererForType() {
 
-        assertEquals(rendererOne, dataSource.rendererForType(rendererOne.layoutRes))
-        assertEquals(rendererTwo, dataSource.rendererForType(rendererTwo.layoutRes))
+        assertEquals(rendererOne, dataSource.rendererForType(rendererOne.layoutRes()))
+        assertEquals(rendererTwo, dataSource.rendererForType(rendererTwo.layoutRes()))
     }
 
     @Test
     fun viewResourceForPosition() {
 
-        assertEquals(rendererOne.layoutRes, 1)
-        assertEquals(rendererTwo.layoutRes, 2)
+        assertEquals(rendererOne.layoutRes(), 1)
+        assertEquals(rendererTwo.layoutRes(), 2)
     }
 
     @Test
@@ -60,10 +62,11 @@ class RecyclerDataSourceTest {
     }
 
     internal class TestItem
-            constructor(val mId: Long,
-                        val mKey: String) {
+    constructor(val mId: Long,
+                val mKey: String)
+        : RecyclerItem {
 
-        override fun getId(): Long {
+        override fun getItemId(): Long {
             return mId
         }
 
@@ -73,7 +76,8 @@ class RecyclerDataSourceTest {
     }
 
     internal class TestRender
-            constructor(val layoutRes: Int) {
+    constructor(val layoutRes: Int)
+        : ItemRenderer<RecyclerItem> {
 
         override fun layoutRes(): Int {
             return layoutRes
