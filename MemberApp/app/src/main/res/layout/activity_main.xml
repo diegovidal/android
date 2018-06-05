@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id = "@+id/tvTitle"
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:text = "@string/title"
+        android:textAlignment="center"
+        android:textColor = "#011a5c"
+        android:layout_marginTop="20dp"
+        android:textSize = "40sp" />
+
+    <ImageView
+        android:id="@+id/ivMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/member"
+        android:layout_below="@+id/tvTitle"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/etMemberId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_number"
+        android:layout_below="@+id/ivMember"
+        android:textAlignment="center"
+        android:textColor = "#011a5c"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/submit"
+        android:layout_below="@+id/etMemberId"
+        android:textAlignment="center"
+        android:textColor = "#011a5c"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp" />
+
+
+
+</RelativeLayout>
