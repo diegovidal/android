@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.com.vp.servicetest">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <service
+            android:name=".service.MyService"
+            android:exported="false"> <!-- Somente nossa aplicação pode utilizar esse serviço (exported) -->
+            <intent-filter>
+                <action android:name="MY_SERVICE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".bindservice.MyBindService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="MY_BIND_SERVICE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".intentservice.MyIntentService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="MY_INTENT_SERVICE" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".resultreceiver.MySecondIntentService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="MY_SECOND_INTENT_SERVICE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".service.MyServiceActivity"
+            android:label="Service Example" />
+        <activity
+            android:name=".bindservice.MyBindServiceActivity"
+            android:label="Bind Service Example" />
+        <activity
+            android:name=".intentservice.MyIntentServiceActivity"
+            android:label="Intent Service Example" />
+        <activity android:name=".resultreceiver.MyResultReceiverActivity"></activity>
+    </application>
+
+</manifest>
