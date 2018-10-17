@@ -17,7 +17,6 @@ class MyBindService: Service(), CountListener {
     private val controller = Controller()
 
     override fun onBind(p0: Intent?): IBinder? {
-
         return controller
     }
 

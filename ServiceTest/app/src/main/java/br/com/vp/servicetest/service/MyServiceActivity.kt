@@ -41,6 +41,5 @@ class MyServiceActivity : AppCompatActivity() {
             it.setPackage(packageName)
             stopService(it)
         }
-
     }
 }
