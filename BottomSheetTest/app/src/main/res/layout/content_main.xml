@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="16dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="56dp"
+                tools:context=".MainActivity"
+                tools:showIn="@layout/activity_main">
+
+    <TextView
+            android:id="@+id/tv_title"
+            android:layout_alignParentTop="true"
+            android:text="BottomSheet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <Button
+            android:layout_below="@+id/tv_title"
+            android:id="@+id/bt_call_bottom_sheet_dialog"
+            android:onClick="callBottomSheetDialog"
+            android:text="Show Bottom Sheet Dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    <Button
+            android:layout_below="@+id/bt_call_bottom_sheet_dialog"
+            android:onClick="callBottomSheetDialogFragment"
+            android:text="Show Bottom Sheet Dialog Fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+</RelativeLayout>
