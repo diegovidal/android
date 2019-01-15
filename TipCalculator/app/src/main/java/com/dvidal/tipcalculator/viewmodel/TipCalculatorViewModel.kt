@@ -44,6 +44,7 @@ class TipCalculatorViewModel @JvmOverloads
     }
 
     fun loadSavedTipCalculationSummaries() : LiveData<List<TipCalculationSummaryItem>> {
+
         return Transformations.map(calculator.loadSavedTipCalculations()) { tipCalculationObjects ->
             tipCalculationObjects.map {
                 TipCalculationSummaryItem(it.locationName,

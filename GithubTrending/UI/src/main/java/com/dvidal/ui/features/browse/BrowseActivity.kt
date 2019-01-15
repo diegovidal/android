@@ -102,6 +102,7 @@ class BrowseActivity: AppCompatActivity() {
     }
 
     private val projectListener = object : ProjectListener {
+
         override fun onBookmarkedProjectClicked(projectId: String) {
             browseViewModel.unbookmarkProject(projectId)
         }

@@ -28,6 +28,7 @@ class BrowseProjectsViewModel @Inject constructor(
     private val liveData: MutableLiveData<Resource<List<ProjectView>>> = MutableLiveData()
 
     override fun onCleared() {
+
         getProjectsUseCase.dispose()
         bookmarkProjectUseCase.dispose()
         unbookmarkProjectUseCase.dispose()
